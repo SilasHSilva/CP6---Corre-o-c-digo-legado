@@ -1,72 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-
-namespace LegacySystem
+﻿namespace LegacySystem
 {
     class MainSistema
     {
         static void Main(string[] args)
         {
-            SistemaCliente sc = new SistemaCliente();
-            sc.AddCliente(1, "Joao", "joao@email.com");
-            sc.AddCliente(2, "Maria", "maria@email.com");
+            ClienteSistema clienteSistema = new ClienteSistema();
+            clienteSistema.AddCliente(1, "Joao", "joao@email.com");
+            clienteSistema.AddCliente(2, "Maria", "maria@email.com");
 
-            SistemaTransacoes st = new SistemaTransacoes();
-            st.AdicionarTransacao(1, 100.50m, "Compra de Produto");
-            st.AdicionarTransacao(2, 200.00m, "Compra de Serviço");
-            st.AdicionarTransacao(3, 300.75m, "Compra de Software");
+            TransacaoSistema transacaoSistema = new TransacaoSistema();
+            transacaoSistema.AdicionarTransacao(1, 100.50m, "Compra de Produto");
+            transacaoSistema.AdicionarTransacao(2, 200.00m, "Compra de Serviço");
+            transacaoSistema.AdicionarTransacao(3, 300.75m, "Compra de Software");
 
-            sc.ExibirTodosOsClientes();
-            st.ExibirTransacoes();
+            clienteSistema.ExibirTodosOsClientes();
+            transacaoSistema.ExibirTransacoes();
 
-            sc.removerCliente(1);
-            sc.ExibirTodosOsClientes();
+            clienteSistema.RemoverCliente(1);
+            clienteSistema.ExibirTodosOsClientes();
 
-            sc.AtualizarNomeCliente(2, "Maria Silva");
-
-            string nomeEmpresa = "Empresa Teste";
-            string descricaoTransacao = "Compra de Insumo";
-
-            for (int i = 0; i < 5; i++)
-            {
-                Console.WriteLine("Nome da Empresa: " + nomeEmpresa + " Descrição: " + descricaoTransacao);
-            }
-
-            for (int i = 0; i < 5; i++)
-            {
-                Console.WriteLine("Nome da Empresa: " + nomeEmpresa + " Descrição: " + descricaoTransacao);
-            }
-
-            for (int i = 0; i < 5; i++)
-            {
-                Console.WriteLine("Nome da Empresa: " + nomeEmpresa + " Descrição: " + descricaoTransacao);
-            }
-
-            for (int i = 0; i < 5; i++)
-            {
-                Console.WriteLine("Nome da Empresa: " + nomeEmpresa + " Descrição: " + descricaoTransacao);
-            }
+            clienteSistema.AtualizarNomeCliente(2, "Maria Silva");
 
             Relatorio relatorio = new Relatorio();
-            relatorio.GerarRelatorioCliente(sc.clientes);
-            relatorio.GerarRelatorioClienteDuplicado(sc.clientes);
+            relatorio.GerarRelatorioCliente(clienteSistema.clientes);
+            relatorio.GerarRelatorioCliente(clienteSistema.clientes);
+            relatorio.GerarRelatorioCliente(clienteSistema.clientes);
 
-            int soma = 0;
-            for (int i = 0; i < 10; i++)
-            {
-                //Soma mais 1
-                soma += i;
-            }
-
-            Console.WriteLine("Soma total: " + soma);
-
-            int somaDuplicada = 0;
-            for (int i = 0; i < 10; i++)
-            {
-                //Soma Duplicada
-                somaDuplicada += i;
-            }
         }
     }
 }
